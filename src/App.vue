@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import LogoImage from "@/components/LogoImage.vue";
-// import { testComposable } from "@/composables/test";
 
-// testComposable("test")
+testComposable("test")
 </script>
 
 <template>

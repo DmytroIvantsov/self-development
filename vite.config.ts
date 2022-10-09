@@ -9,14 +9,16 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [
     vue(),
+
     AutoImport({
       imports: ["vue", "vue-router", "@vueuse/head", "@vueuse/core"],
-      dirs: ["composables", "stores"],
+      dirs: ["src/composables", "src/stores"],
       vueTemplate: true,
-      dts: "auto-imports.d.ts",
+      dts: true,
     }),
+
     Components({
-      dirs: ["components"],
+      dirs: ["src/components"],
       extensions: ["vue"],
       include: [/\.vue$/, /\.vue\?vue/],
       dts: "components.d.ts",
