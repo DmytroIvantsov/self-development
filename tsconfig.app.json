@@ -7,6 +7,14 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "@vuedx/typescript-plugin-vue"
+      },
+      {
+        "name": "vite-plugin-iso-import"
+      }
+    ]
   }
 }
