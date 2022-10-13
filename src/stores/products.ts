@@ -31,7 +31,7 @@ export const useProductsStore = defineStore('products', () => {
     }
     
     const removeFromCart = (id: number) => {
-        productsInCart.value.filter((item: Product) => item.id !== id)
+        productsInCart.value = productsInCart.value.filter((item: Product) => item.id !== id)
     }
 
     return { list, productsInCart, addToCart, removeFromCart }

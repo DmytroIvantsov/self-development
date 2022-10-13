@@ -1,16 +1,21 @@
 <script setup lang="ts">
-import type { Product } from "@/stores/products";
+import type { Product } from "@/stores/products"
 
-defineProps({
+const props = defineProps({
   product: {
     type: Object,
     default: null,
   }
 })
 
-const emit = defineEmits(["addToCart"])
+const emit = defineEmits(["addToCart", "onRemove"])
+
+const store = useProductsStore()
+
+const alreadyInCart = computed(() => !!store.productsInCart.find((item: Product) => item.id === props.product.id))
 
 const onAdd = (id: number) => emit("addToCart", id)
+const onRemove = (id: number) => emit("onRemove", id)
 </script>
 
 <template>
@@ -32,7 +37,8 @@ const onAdd = (id: number) => emit("addToCart", id)
       </div>
       <div class="flex justify-between items-center">
         <span v-if="product.price" class="text-3xl font-bold text-gray-900 dark:text-white">${{ product.price }}</span>
-        <button @click="onAdd(product.id)" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+        <button v-if="alreadyInCart" @click="onRemove(product.id)" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Remove from cart</button>
+        <button v-else @click="onAdd(product.id)" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
       </div>
     </div>
   </div>

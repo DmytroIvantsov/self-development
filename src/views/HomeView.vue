@@ -14,6 +14,7 @@ const products = computed(() => store.list.products)
         v-for="product in products"
         :product="product"
         @addToCart="store.addToCart"
+        @onRemove="store.removeFromCart"
       />
     </div>
   </main>
