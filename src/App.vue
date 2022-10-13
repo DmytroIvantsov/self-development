@@ -2,7 +2,6 @@
 import { RouterView } from 'vue-router'
 
 testComposable("test")
-const store = useCounterStore()
 </script>
 
 <template>
